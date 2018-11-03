@@ -54,8 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK:- temperture
     
     func setUpTempertureLine() {
-        let t = DeviceService.shared.temperture.getStatue()
-        tempertureLine.title = "t\(t) C"
+//        let t = DeviceService.shared.temperture.getStatue()
+//        tempertureLine.title = "t\(t) C"
     }
     
     

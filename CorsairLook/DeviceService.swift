@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Regex
 
 
 class DeviceService {
@@ -16,10 +16,10 @@ class DeviceService {
     let communicator = Communicator()
     
 
-    func getStatus() {
+    func getStatus() -> Parser.Status {
         // we just support only one device now
         let output = communicator.command("--device 0")
-        Parser.parseStatus(output)
+        return Parser.parseStatus(output)
     }
     
     
@@ -32,8 +32,8 @@ struct Parser {
         let vender: String
         let product: String
         let firmware: String
-        let temperature: String
-        let fanSpeed: [String]
+        let temperatures: [String]?
+        let fanSpeed: [String]?
         let pump: (
             mode:String,
             speed:String
@@ -41,7 +41,20 @@ struct Parser {
     }
     
     static func parseStatus(_ output: String) -> Status {
-        
+        let output = output + "\n"
+        func regexOut(_ re:String, group: Int = 1) -> String {
+            return re.r?.findFirst(in: output)?.group(at: group) ?? ""
+        }
+        let vender = regexOut("Vendor: *(.+)\n")
+        let Product = regexOut("Product: *(.+)\n")
+        let firmware = regexOut("Firmware: *(.+)\n")
+        let temperature = "Temperature( +[0-9]+)?: *(.+)\n".r?.findAll(in: output).map({ $0.group(at: 2) ?? ""})
+        let fans = "Fan( ?[0-9]+)?: *[\\w\\W\\n]*?(Speed.+).*\n".r?.findAll(in: output).map { $0.group(at: 2) ?? "" }
+
+        let result = "Pump( ?[0-9]+)?: *.+\\((.+)\\)\n.*?(Speed.+).*\n".r!.findFirst(in: output)
+        let mode = result?.group(at: 2) ?? ""
+        let speed = result?.group(at: 3) ?? ""
+        return Status(vender: vender, product: Product, firmware: firmware, temperatures:temperature, fanSpeed: fans, pump: (mode, speed))
     }
 }
 

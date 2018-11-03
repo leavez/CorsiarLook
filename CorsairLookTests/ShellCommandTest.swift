@@ -26,5 +26,4 @@ class ShellCommandTest: XCTestCase {
         XCTAssertTrue(output.count > 0)
     }
 
-
 }

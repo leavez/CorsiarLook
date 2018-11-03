@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414B5287218DD78E00CD8C62 /* ParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B5286218DD78E00CD8C62 /* ParserTest.swift */; };
+		414B5289218DDB5E00CD8C62 /* ManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B5288218DDB5E00CD8C62 /* ManagerTest.swift */; };
 		41698C70218DB64A009A4644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41698C6F218DB64A009A4644 /* AppDelegate.swift */; };
 		41698C72218DB64A009A4644 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41698C71218DB64A009A4644 /* Assets.xcassets */; };
 		41698C75218DB64A009A4644 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41698C73218DB64A009A4644 /* MainMenu.xib */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		1C98E9EB006642E308C405D9 /* Pods-CorsairLookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorsairLookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CorsairLookTests/Pods-CorsairLookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		414B5286218DD78E00CD8C62 /* ParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTest.swift; sourceTree = "<group>"; };
+		414B5288218DDB5E00CD8C62 /* ManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTest.swift; sourceTree = "<group>"; };
 		41698C6C218DB64A009A4644 /* CorsairLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorsairLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41698C6F218DB64A009A4644 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41698C71218DB64A009A4644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,8 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				41698C80218DB64A009A4644 /* CorsairLookTests.swift */,
+				414B5288218DDB5E00CD8C62 /* ManagerTest.swift */,
 				41698DBC218DC4F7009A4644 /* ShellCommandTest.swift */,
 				41698C82218DB64A009A4644 /* Info.plist */,
+				414B5286218DD78E00CD8C62 /* ParserTest.swift */,
 			);
 			path = CorsairLookTests;
 			sourceTree = "<group>";
@@ -144,7 +150,6 @@
 				41698C68218DB64A009A4644 /* Sources */,
 				41698C69218DB64A009A4644 /* Frameworks */,
 				41698C6A218DB64A009A4644 /* Resources */,
-				5D6217E521E035F941789455 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,34 +265,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5D6217E521E035F941789455 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CorsairLook/Pods-CorsairLook-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CrossroadRegex/Regex.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CorsairLook/Pods-CorsairLook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E97C772836DAF7801D9806CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +305,8 @@
 			files = (
 				41698DBD218DC4F7009A4644 /* ShellCommandTest.swift in Sources */,
 				41698C81218DB64A009A4644 /* CorsairLookTests.swift in Sources */,
+				414B5287218DD78E00CD8C62 /* ParserTest.swift in Sources */,
+				414B5289218DDB5E00CD8C62 /* ManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
