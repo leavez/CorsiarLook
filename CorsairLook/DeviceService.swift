@@ -13,30 +13,56 @@ import Foundation
 class DeviceService {
     
     static let shared = DeviceService()
+    let communicator = Communicator()
     
-    class Temperture {
-        
-        func getStatue() -> Int {
-            return 12
-        }
+
+    func getStatus() {
+        // we just support only one device now
+        let output = communicator.command("--device 0")
+        Parser.parseStatus(output)
     }
-    
-    let temperture = Temperture()
     
     
 }
 
 
-private class Communicator {
+struct Parser {
     
-    func command(_ c: String) -> String {
-        
+    struct Status {
+        let vender: String
+        let product: String
+        let firmware: String
+        let temperature: String
+        let fanSpeed: [String]
+        let pump: (
+            mode:String,
+            speed:String
+        )
     }
     
-    private func shell(launchPath: String, arguments: [String]) -> String? {
+    static func parseStatus(_ output: String) -> Status {
+        
+    }
+}
+
+
+class Communicator {
+    
+    let executeLibPath: String
+    
+    init() {
+        executeLibPath = Bundle.main.path(forResource: "OpenCorsairLink", ofType: nil)!
+    }
+    
+    func command(_ c: String) -> String {
+        return Communicator.shell("\(executeLibPath) \(c)")!
+    }
+    
+    
+    static func shell(_ command: String) -> String? {
         let task = Process()
-        task.launchPath = launchPath
-        task.arguments = arguments
+        task.launchPath = "/bin/bash"
+        task.arguments = ["-c", command]
         
         let pipe = Pipe()
         task.standardOutput = pipe
@@ -49,3 +75,56 @@ private class Communicator {
     }
 }
 
+/**
+ 
+OpenCorsairLink [options]
+Options:
+	--help				:Prints this Message
+	--version			:Displays version.
+	--debug				:Displays enhanced Debug Messages.
+	--dump				:Implies --debug. Dump the raw data recieved from the device.
+	--machine			:Prints statuses in Machine Readable Format.
+	--device <Device Number>	:Select device.
+
+	LED:
+	--led channel=N,mode=N,colors=HHHHHH:HHHHHH:HHHHHH,temp=TEMP:TEMP:TEMP
+		Channel: <led number> :Selects a led channel to setup. Accepted values are 1 or 2.
+		Mode:
+			 0 - Static
+			 1 - Blink (Only Commander Pro and Asetek Pro)
+			 2 - Color Pulse (Only Commander Pro and Asetek Pro)
+			 3 - Color Shift (Only Commander Pro and Asetek Pro)
+			 4 - Rainbow (Only Commander Pro and Asetek Pro)
+			 5 - Temperature (Only Commander Pro, Asetek, and Asetek Pro)
+		Colors: <HTML Color Code>			:Define Color for LED.
+		Warn: <HTML Color Code>		:Define Color for Warning Temp.
+		Temp: <Temperature in Celsius>	:Define Warning Temperature.
+
+	Fan:
+	--fan channel=N,mode=N,pwm=PWM,rpm=RPM,temps=TEMP:TEMP:TEMP,speeds=SPEED:SPEED:SPEED
+		Channel: <fan number> :Selects a fan to setup. Accepted values are 1, 2, 3 or 4.
+		Modes:
+			 0 - Fixed PWM (requires to specify the PWM)
+			 1 - Fixed RPM (requires to specify the RPM)
+			 2 - Default
+			 3 - Quiet
+			 4 - Balanced
+			 5 - Performance
+			 6 - Custom Curve
+		PWM <PWM Percent> 	:The desired PWM for the selected fan. NOTE: it only works when fan mode is set to Fixed PWM
+		RPM <fan RPM> 	:The desired RPM for the selected fan. NOTE: it works only when fan mode is set to Fixed RPM
+		For Custom Curves:
+			Temps <C>	:Define Celsius Temperatures for Fan.
+			Speeds <Percentage>	:Define Values of RPM Percentage for Fan.
+
+	Pump:
+	--pump mode=<mode>
+		Modes:
+			 3 - Quiet
+			 5 - Performance
+
+ Without options, OpenCorsairLink will show the status of any detected Corsair Link device.
+ 
+ 
+ 
+ */
