@@ -13,17 +13,30 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CorsairLook" customModuleProvider="target">
             <connections>
+                <outlet property="fanLine" destination="2VY-EH-N7r" id="Mpg-Xh-tcH"/>
                 <outlet property="menu" destination="7mI-0J-gVG" id="Cy3-4x-low"/>
+                <outlet property="nameLIne" destination="mUl-cZ-w6x" id="OV8-56-8T2"/>
+                <outlet property="pumpLine" destination="UMb-O7-CEu" id="cGY-bS-NRB"/>
+                <outlet property="pumpMode" destination="P2r-1s-Qqp" id="ZYh-um-kS8"/>
                 <outlet property="tempertureLine" destination="5ca-JA-fny" id="xKJ-nu-Oag"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="7mI-0J-gVG">
             <items>
-                <menuItem title="Item 1" id="5ca-JA-fny">
+                <menuItem title="Name" id="mUl-cZ-w6x">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Item 2" id="q21-Ir-KCN">
+                <menuItem title="Temperature" id="5ca-JA-fny">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Fan speed" id="2VY-EH-N7r">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="pump mode" id="P2r-1s-Qqp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="pump speed" id="UMb-O7-CEu">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Quit" id="8Jg-CK-jyW">
@@ -33,7 +46,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="141.5" y="152"/>
+            <point key="canvasLocation" x="141.5" y="192"/>
         </menu>
     </objects>
 </document>

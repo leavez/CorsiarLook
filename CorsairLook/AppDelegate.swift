@@ -14,7 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     @IBOutlet weak var menu: NSMenu!
 
+    @IBOutlet weak var nameLIne: NSMenuItem!
     @IBOutlet weak var tempertureLine: NSMenuItem!
+    @IBOutlet weak var fanLine: NSMenuItem!
+    @IBOutlet weak var pumpMode: NSMenuItem!
+    @IBOutlet weak var pumpLine: NSMenuItem!
     
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -22,21 +26,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.title = "Corsair"
         statusItem.menu = menu
         
-        // temperture
-        setUpTempertureLine()
         
-        let view = NSView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        view.layer?.backgroundColor = NSColor.red.cgColor
+        let s = DeviceService.shared.getStatus()
+        tempertureLine.title = "Temperature \(s.temperatures?.first ?? "")"
         
-//        tempertureLine.view = view
+//        let view = NSView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        view.layer?.backgroundColor = NSColor.red.cgColor
+//        let label = NSTextView(frame: .zero)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.string = "\(s)"
+////        tempertureLine.view = label
+//
+//        tLabel.stringValue = "\(s.temperatures?.first)"
         
-        
-        
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.statusItem.button?.title = "123"
+        func update(includeOutter:Bool = true) {
+            let s = DeviceService.shared.getStatus()
+            if includeOutter {
+                self.statusItem.button?.title = s.temperatures?.first ?? "NO TEMP"
+            }
+            self.nameLIne.title = s.vender + " " + s.product
+            self.tempertureLine.title = "Temperature: " + (s.temperatures?.first ?? "")
+            self.fanLine.title = "Fan: " + (s.fanSpeed.map { $0.joined(separator: ", ") } ?? "")
+            self.pumpLine.title = "Pump Mode: " + s.pump.mode
+            self.pumpMode.title = "Pump Speed: " + s.pump.speed
         }
+        
+        update(includeOutter: false)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                update()
+            }
+        }
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -51,15 +74,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    // MARK:- temperture
-    
-    func setUpTempertureLine() {
-//        let t = DeviceService.shared.temperture.getStatue()
-//        tempertureLine.title = "t\(t) C"
-    }
-    
-    
 
+    
     
 }
 
