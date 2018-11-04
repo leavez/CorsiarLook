@@ -8,20 +8,83 @@
 
 import Foundation
 import Regex
+import RxSwift
 
 
 class DeviceService {
     
     static let shared = DeviceService()
     let communicator = Communicator()
-    
 
-    func getStatus() -> Parser.Status {
-        // we just support only one device now
-        let output = communicator.command("--device 0")
-        return Parser.parseStatus(output)
+    
+    // MARK:- status
+
+    class Status {
+        
+        enum PumpMode: String {
+            case quiet
+            case balanced
+            case performance
+        }
+        
+        let bumpMode = Variable<PumpMode>(.quiet)
+        let rawStatus = Variable<Parser.Status?>(nil)
     }
     
+    let status = Status()
+
+    
+    func getRawStatus() -> Parser.Status {
+        // we just support only one device now
+        return executeCommandAndUpdateState("--device 0")
+    }
+    
+    
+    private func updateStatusWithRawValue(_ raw: Parser.Status) {
+        status.rawStatus.value = raw
+        
+        // parse pump mode
+        let dict = ["quiet": Status.PumpMode.quiet,
+                    "balanced": .balanced,
+                    "performance": .performance]
+        let mode = dict.first { (key, mode) -> Bool in
+            raw.pump.mode.lowercased().contains(key)
+            }?.value ?? .quiet
+        status.bumpMode.value = mode
+    }
+
+    
+    
+    // MARK:- Action
+    
+    
+    func set(pumpMode: DeviceService.Status.PumpMode) {
+        var mode = 3
+        switch pumpMode {
+        case .quiet: mode = 3
+        case .balanced: mode = 4
+        case .performance: mode = 5
+        }
+        executeCommandAndUpdateState("--device 0 --pump mode=\(mode)")
+    }
+
+    
+    
+    
+    
+    // MARK:- private
+    
+    @discardableResult
+    func executeCommandAndUpdateState(_ command: String) -> Parser.Status {
+        let output = communicator.command(command)
+        let s = Parser.parseStatus(output)
+        self.updateStatusWithRawValue(s)
+        return s
+    }
+    
+    
+    
+
     
 }
 

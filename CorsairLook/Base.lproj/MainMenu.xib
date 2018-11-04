@@ -16,8 +16,8 @@
                 <outlet property="fanLine" destination="2VY-EH-N7r" id="Mpg-Xh-tcH"/>
                 <outlet property="menu" destination="7mI-0J-gVG" id="Cy3-4x-low"/>
                 <outlet property="nameLIne" destination="mUl-cZ-w6x" id="OV8-56-8T2"/>
-                <outlet property="pumpLine" destination="UMb-O7-CEu" id="cGY-bS-NRB"/>
-                <outlet property="pumpMode" destination="P2r-1s-Qqp" id="ZYh-um-kS8"/>
+                <outlet property="pumpModeSelectionLine" destination="PXm-pp-IK7" id="eOg-1T-EMZ"/>
+                <outlet property="pumpSpeed" destination="P2r-1s-Qqp" id="ZYh-um-kS8"/>
                 <outlet property="tempertureLine" destination="5ca-JA-fny" id="xKJ-nu-Oag"/>
             </connections>
         </customObject>
@@ -33,20 +33,55 @@
                 <menuItem title="Fan speed" id="2VY-EH-N7r">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="pump mode" id="P2r-1s-Qqp">
+                <menuItem title="pump speed" id="P2r-1s-Qqp">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="pump speed" id="UMb-O7-CEu">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="pump mode" id="PXm-pp-IK7">
+                    <menu key="submenu" title="pump mode" id="ndg-OD-G8d">
+                        <items>
+                            <menuItem title="Quiet" state="on" id="dyr-nk-XUW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapPumpModeQuiet:" target="Voe-Tx-rLC" id="e6Y-Hj-Uko"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Balenced" id="eMX-zi-Gxg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapPumpModeBalanced:" target="Voe-Tx-rLC" id="8Ic-mh-Xc9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Performance" id="lSY-Uk-vQj">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapPumpModePerformance:" target="Voe-Tx-rLC" id="gp6-jh-3ag"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem title="Quit" id="8Jg-CK-jyW">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="didTapQuit:" target="Voe-Tx-rLC" id="hn1-fz-kpZ"/>
+                        <action selector="didTapQuit:" target="Voe-Tx-rLC" id="89G-H7-LNl"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="141.5" y="192"/>
+            <point key="canvasLocation" x="-361" y="142"/>
+        </menu>
+        <menu id="9HA-qg-nJh">
+            <items>
+                <menuItem title="Item 1" id="IdK-fg-ibd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 2" id="Scb-aU-FOf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 3" id="eC8-jc-RUR">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="31" y="143"/>
         </menu>
     </objects>
 </document>
