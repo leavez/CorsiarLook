@@ -93,6 +93,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         viewModel.didSelect(pumpMode: .performance)
     }
     
+    @IBAction func didTapLEDModeWhite(_ sender: Any) {
+        DeviceService.shared.setLEDToStaticWhite()
+    }
+    @IBAction func didTapLEDModeOrange(_ sender: Any) {
+        DeviceService.shared.setLEDToStaticColor(hex: "ff2200")
+    }
+    @IBAction func didTapLEDModeRainbow(_ sender: Any) {
+        DeviceService.shared.setLEDToBreathRainbow()
+    }
     
     
 }

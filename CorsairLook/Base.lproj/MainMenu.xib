@@ -60,6 +60,69 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="LED mode" id="61f-fp-EJL">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="LED mode" id="KIR-Kj-XA1">
+                        <items>
+                            <menuItem title="static white" id="58F-9X-LBi">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapLEDModeWhite:" target="Voe-Tx-rLC" id="Jbb-Rz-fpY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="blow orange" id="QnD-ME-Zoe">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapLEDModeOrange:" target="Voe-Tx-rLC" id="GkR-f8-Mb6"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="rainbow" id="awc-EU-ufy">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapLEDModeRainbow:" target="Voe-Tx-rLC" id="QOy-gP-iA2"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Setting" id="FLB-fo-7gS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Setting" id="AzU-QW-ZLs">
+                        <items>
+                            <menuItem title="Update Duration" id="Se5-in-c3K">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Update Duration" id="kGO-Mt-9Nq">
+                                    <items>
+                                        <menuItem title="turn off auto update" id="fmh-TZ-1SG">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="1" id="nm0-ZH-MlN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="1.5" id="1rq-0J-Ogo">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="2" id="k3C-cj-QBK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="3" id="KNw-v5-tG7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="5" id="ufa-Es-Buh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="10" id="tyF-VV-WGB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Item" id="oJq-m0-JNX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Quit" id="8Jg-CK-jyW">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -83,5 +146,21 @@
             </items>
             <point key="canvasLocation" x="31" y="143"/>
         </menu>
+        <menuItem title="Menu" id="5Ia-By-btV">
+            <modifierMask key="keyEquivalentModifierMask"/>
+            <menu key="submenu" title="Menu" id="bKc-Nl-at0">
+                <items>
+                    <menuItem title="Item" id="hpB-6g-rAv">
+                        <modifierMask key="keyEquivalentModifierMask"/>
+                    </menuItem>
+                </items>
+            </menu>
+        </menuItem>
+        <menuItem title="5" id="Q99-wj-b2R">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
+        <menuItem title="Item" id="mUX-ly-H3t">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
     </objects>
 </document>

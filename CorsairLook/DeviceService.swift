@@ -33,9 +33,10 @@ class DeviceService {
     
     let status = Status()
 
-    
-    func getRawStatus() -> Parser.Status {
+    @discardableResult
+    func fetchStatus() -> Parser.Status {
         // we just support only one device now
+        print("fetch status...")
         return executeCommandAndUpdateState("--device 0")
     }
     
@@ -67,8 +68,16 @@ class DeviceService {
         }
         executeCommandAndUpdateState("--device 0 --pump mode=\(mode)")
     }
-
     
+    func setLEDToStaticWhite() {
+        executeCommandAndUpdateState("--device 0  --led channel=1,mode=0,colors=333333")
+    }
+    func setLEDToStaticColor(hex:String) {
+        executeCommandAndUpdateState("--device 0  --led channel=1,mode=0,colors=\(hex)")
+    }
+    func setLEDToBreathRainbow() {
+        executeCommandAndUpdateState("--device 0  --led channel=1,mode=2")
+    }
     
     
     

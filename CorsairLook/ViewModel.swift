@@ -20,7 +20,9 @@ class ViewModel {
     let pumpSpeed = Variable("(pump speed)")
     let pumpMode = Variable("(pump mode)")
     let pumpModeSubmenu = Variable(DeviceService.Status.PumpMode.quiet)
+    
 
+    
     private let bag = DisposeBag()
     
     init() {
@@ -47,6 +49,27 @@ class ViewModel {
     func didSelect(pumpMode: DeviceService.Status.PumpMode) {
         DeviceService.shared.set(pumpMode: pumpMode)
     }
+    
+    
+    let setting = Setting()
+    
+    class Setting {
+        let updateDuration = Variable(2.0)
+        let automaticallyChangePumpMode = Variable(true)
+        
+        init() {
+
+            updateDuration.asObservable().flatMapLatest({ d in
+                Observable<Int>.interval(d, scheduler: MainScheduler.asyncInstance)
+            }).subscribe(onNext: { _ in
+                DeviceService.shared.fetchStatus()
+            }).disposed(by: bag)
+        }
+        
+        private let bag = DisposeBag()
+        
+    }
+
 }
 
 
