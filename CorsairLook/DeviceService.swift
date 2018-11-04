@@ -28,6 +28,7 @@ class DeviceService {
         }
         
         let bumpMode = Variable<PumpMode>(.quiet)
+        let temperature = Variable<Double>(0)
         let rawStatus = Variable<Parser.Status?>(nil)
     }
     
@@ -52,6 +53,12 @@ class DeviceService {
             raw.pump.mode.lowercased().contains(key)
             }?.value ?? .quiet
         status.bumpMode.value = mode
+        
+        // parse temperature
+        let tempStr = "[0-9.]+".r!.findFirst(in: raw.temperatures?.first ?? "")?.matched ?? ""
+        if let t = Double(tempStr) {
+            status.temperature.value = t
+        }
     }
 
     

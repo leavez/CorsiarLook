@@ -20,7 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var tempertureLine: NSMenuItem!
     @IBOutlet weak var fanLine: NSMenuItem!
     @IBOutlet weak var pumpSpeed: NSMenuItem!
-    @IBOutlet weak var pumpMode: NSMenuItem!
     @IBOutlet weak var pumpModeSelectionLine: NSMenuItem!
     
     
@@ -31,11 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // set up the status view in status bar
         statusItem.menu = menu
         bind(viewModel: viewModel)
-        
-
-        _ = DeviceService.shared.communicator.command("--device 0 --led channel=1,model=0,colors=333333")
-
-        
     }
 
     
@@ -64,10 +58,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         viewModel.pumpModeSubmenu.asObservable().bind {[unowned self] (mode) in
             var index = 0
-            switch mode {
-            case .quiet: index = 0
-            case .balanced: index = 1
-            case .performance: index = 2
+            if let mode = mode {
+                switch mode {
+                case .quiet: index = 1
+                case .balanced: index = 2
+                case .performance: index = 3
+                }
             }
             self.pumpModeSelectionLine.submenu?.items.forEach{ $0.state = .off}
             self.pumpModeSelectionLine.submenu?.items[index].state = .on
@@ -83,6 +79,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    @IBAction func didTapPumpModeAuto(_ sender: Any) {
+        viewModel.didSelectPumpModeAuto()
+    }
     @IBAction func didTapPumpModeQuiet(_ sender: Any) {
         viewModel.didSelect(pumpMode: .quiet)
     }

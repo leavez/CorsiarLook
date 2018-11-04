@@ -39,7 +39,13 @@
                 <menuItem title="pump mode" id="PXm-pp-IK7">
                     <menu key="submenu" title="pump mode" id="ndg-OD-G8d">
                         <items>
-                            <menuItem title="Quiet" state="on" id="dyr-nk-XUW">
+                            <menuItem title="automatically" state="on" id="Ayj-j1-Fi9">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapPumpModeAuto:" target="Voe-Tx-rLC" id="IEo-gg-gQ0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Quiet" id="dyr-nk-XUW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="didTapPumpModeQuiet:" target="Voe-Tx-rLC" id="e6Y-Hj-Uko"/>
@@ -130,7 +136,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-361" y="142"/>
+            <point key="canvasLocation" x="-507" y="141"/>
         </menu>
         <menu id="9HA-qg-nJh">
             <items>
