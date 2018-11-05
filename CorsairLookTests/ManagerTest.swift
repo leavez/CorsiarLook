@@ -12,7 +12,7 @@ import XCTest
 class ManagerTest: XCTestCase {
 
     func test_getStatus() {
-        let s = DeviceService.shared.getRawStatus()
+        let s = DeviceService.shared.fetchStatus()
         XCTAssertTrue(s.product.count > 0)
         XCTAssertTrue(s.pump.mode.count > 0)
         XCTAssertNotNil(s.temperatures?.first)

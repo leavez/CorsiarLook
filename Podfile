@@ -14,6 +14,8 @@ target 'CorsairLook' do
   target 'CorsairLookTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
 end

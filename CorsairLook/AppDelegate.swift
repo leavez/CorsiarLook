@@ -72,6 +72,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         bind(keyPath: \ViewModel.fan, tokeyPath: \AppDelegate.fanLine.title)
         bind(keyPath: \ViewModel.pumpSpeed, tokeyPath: \AppDelegate.pumpSpeed.title)
         bind(keyPath: \ViewModel.pumpMode, tokeyPath: \AppDelegate.pumpModeSelectionLine.title)
+        
+        viewModel.statusBarTitle.asObservable().bind { [unowned self] t in
+            self.statusItem.button?.title = t
+        }.disposed(by: bag)
+        
 
         viewModel.pumpModeSubmenu.asObservable().bind {[unowned self] (mode) in
             var index = 0
@@ -99,12 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.showTemperatureOnStatusBarItem.state = show ? .on : .off
         }.disposed(by: bag)
         
-        Observable.combineLatest(
-            viewModel.statusBarTitle.asObservable(),
-            viewModel.setting.showTemperatureOnStatusBar.asObservable()
-            ).map { $0.1 ? $0.0 : "Corsair"}.bind {[unowned self] (title) in
-                self.statusItem.button?.title = title
-        }.disposed(by: bag)
+
         
     }
     

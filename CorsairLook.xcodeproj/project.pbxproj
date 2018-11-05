@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		411C12B6218F533800B6C4A7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C12B5218F533800B6C4A7 /* ViewModel.swift */; };
+		414339CD21902C1D007382E3 /* ViewModelSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414339CC21902C1D007382E3 /* ViewModelSpecs.swift */; };
 		414B5287218DD78E00CD8C62 /* ParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B5286218DD78E00CD8C62 /* ParserTest.swift */; };
 		414B5289218DDB5E00CD8C62 /* ManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414B5288218DDB5E00CD8C62 /* ManagerTest.swift */; };
 		41698C70218DB64A009A4644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41698C6F218DB64A009A4644 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		1C98E9EB006642E308C405D9 /* Pods-CorsairLookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CorsairLookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CorsairLookTests/Pods-CorsairLookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		411C12B5218F533800B6C4A7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		414339CC21902C1D007382E3 /* ViewModelSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSpecs.swift; sourceTree = "<group>"; };
 		414B5286218DD78E00CD8C62 /* ParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTest.swift; sourceTree = "<group>"; };
 		414B5288218DDB5E00CD8C62 /* ManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTest.swift; sourceTree = "<group>"; };
 		41698C6C218DB64A009A4644 /* CorsairLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CorsairLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				41698C80218DB64A009A4644 /* CorsairLookTests.swift */,
 				414B5288218DDB5E00CD8C62 /* ManagerTest.swift */,
 				41698DBC218DC4F7009A4644 /* ShellCommandTest.swift */,
+				414339CC21902C1D007382E3 /* ViewModelSpecs.swift */,
 				41698C82218DB64A009A4644 /* Info.plist */,
 				414B5286218DD78E00CD8C62 /* ParserTest.swift */,
 			);
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41698DBD218DC4F7009A4644 /* ShellCommandTest.swift in Sources */,
+				414339CD21902C1D007382E3 /* ViewModelSpecs.swift in Sources */,
 				41698C81218DB64A009A4644 /* CorsairLookTests.swift in Sources */,
 				414B5287218DD78E00CD8C62 /* ParserTest.swift in Sources */,
 				414B5289218DDB5E00CD8C62 /* ManagerTest.swift in Sources */,

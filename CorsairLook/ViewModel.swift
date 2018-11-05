@@ -44,9 +44,6 @@ class ViewModel {
         s.bumpMode.asObservable().map {"Pump Mode: " + $0.rawValue}.bind(to: pumpMode).disposed(by: bag)
         
         
-        raw.skip(1).map {$0.temperatures?.first ?? ""}.bind(to: statusBarTitle).disposed(by: bag)
-        
-        
         // setup intial state
         DeviceService.shared.setLEDToStaticWhite()
         
@@ -80,6 +77,11 @@ class ViewModel {
                     return mode
                 }
         }.bind(to: pumpModeSubmenu).disposed(by: bag)
+        
+        Observable.combineLatest(
+            raw.skip(1).map {$0.temperatures?.first ?? ""},
+            setting.showTemperatureOnStatusBar.asObservable()
+            ).map { $0.1 ? $0.0 : "Corsair"}.bind(to: statusBarTitle).disposed(by: bag)
     }
     
     
@@ -97,7 +99,6 @@ class ViewModel {
     
     class Setting {
         let updateDuration = Variable(2.0)
-        let automaticallyChangePumpMode = Variable(true)
         let showTemperatureOnStatusBar = Variable(true)
         
         init() {
