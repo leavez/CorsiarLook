@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var pumpSpeed: NSMenuItem!
     @IBOutlet weak var pumpModeSelectionLine: NSMenuItem!
     
+    @IBOutlet weak var updateDurationMenuItem: NSMenuItem!
     
     let viewModel = ViewModel()
 
@@ -29,6 +30,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // set up the status view in status bar
         statusItem.menu = menu
+        
+        // build part of the setting UI
+        // update duration
+        let seconds = [0, 0.5, 1, 1.5, 2, 3, 5, 10, 30]
+        seconds.map {
+            let title = $0 == 0 ? "turn off auto update" : "\($0)"
+            let item = NSMenuItem(title: title, action: #selector(didTapUpdateDurationItems(_:)), keyEquivalent: "")
+            objc_setAssociatedObject(item, &durationItemsModelKey, $0, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return item
+        }.forEach { (item) in
+            updateDurationMenuItem.submenu?.addItem(item)
+        }
+        
+        // bind view model
         bind(viewModel: viewModel)
     }
 
@@ -69,6 +84,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.pumpModeSelectionLine.submenu?.items[index].state = .on
         }.disposed(by: bag)
         
+        viewModel.setting.updateDuration.asObservable().bind {[unowned self] (d) in
+            let selectedIndex = self.updateDurationMenuItem.submenu?.items.enumerated().first {
+                let duration = objc_getAssociatedObject($0.element, &durationItemsModelKey) as? TimeInterval
+                return duration == d
+            }?.offset ?? 0
+            self.updateDurationMenuItem.submenu?.items.forEach{ $0.state = .off}
+            self.updateDurationMenuItem.submenu?.items[selectedIndex].state = .on
+            }.disposed(by: bag)
+        
     }
     
 
@@ -102,6 +126,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DeviceService.shared.setLEDToBreathRainbow()
     }
     
+    @objc func didTapUpdateDurationItems(_ sender: NSMenuItem) {
+        guard let duration = objc_getAssociatedObject(sender, &durationItemsModelKey) as? TimeInterval else {
+            return
+        }
+        viewModel.setting.didSelectUpdateDuration(duration)
+    }
     
 }
 
+private var durationItemsModelKey = 0

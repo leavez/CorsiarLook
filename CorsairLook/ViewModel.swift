@@ -100,6 +100,7 @@ class ViewModel {
         let automaticallyChangePumpMode = Variable(true)
         
         init() {
+            // auto update
             updateDuration.asObservable().flatMapLatest({ d -> Observable<Int> in
                 if d == 0 {
                     return Observable<Int>.empty()
@@ -112,8 +113,13 @@ class ViewModel {
         }
         
         private let bag = DisposeBag()
+    
         
+        func didSelectUpdateDuration(_ interval: TimeInterval) {
+            updateDuration.value = interval
+        }
     }
+    
 
 }
 

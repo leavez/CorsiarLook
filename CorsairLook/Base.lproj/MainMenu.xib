@@ -19,6 +19,7 @@
                 <outlet property="pumpModeSelectionLine" destination="PXm-pp-IK7" id="eOg-1T-EMZ"/>
                 <outlet property="pumpSpeed" destination="P2r-1s-Qqp" id="ZYh-um-kS8"/>
                 <outlet property="tempertureLine" destination="5ca-JA-fny" id="xKJ-nu-Oag"/>
+                <outlet property="updateDurationMenuItem" destination="Se5-in-c3K" id="GKO-5j-S7p"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -97,31 +98,7 @@
                         <items>
                             <menuItem title="Update Duration" id="Se5-in-c3K">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Update Duration" id="kGO-Mt-9Nq">
-                                    <items>
-                                        <menuItem title="turn off auto update" id="fmh-TZ-1SG">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="1" id="nm0-ZH-MlN">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="1.5" id="1rq-0J-Ogo">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="2" id="k3C-cj-QBK">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="3" id="KNw-v5-tG7">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="5" id="ufa-Es-Buh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="10" id="tyF-VV-WGB">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
+                                <menu key="submenu" title="Update Duration" id="kGO-Mt-9Nq"/>
                             </menuItem>
                             <menuItem title="Item" id="oJq-m0-JNX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
