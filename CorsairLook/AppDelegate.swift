@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var pumpModeSelectionLine: NSMenuItem!
     
     @IBOutlet weak var updateDurationMenuItem: NSMenuItem!
+    @IBOutlet weak var showTemperatureOnStatusBarItem: NSMenuItem!
     
     let viewModel = ViewModel()
 
@@ -64,7 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }.disposed(by: bag)
         }
         
-        bind(keyPath: \ViewModel.statusBarTitle, tokeyPath: \AppDelegate.statusItem.button!.title)
+        
+        
         bind(keyPath: \ViewModel.name, tokeyPath: \AppDelegate.nameLIne.title)
         bind(keyPath: \ViewModel.temperature, tokeyPath: \AppDelegate.tempertureLine.title)
         bind(keyPath: \ViewModel.fan, tokeyPath: \AppDelegate.fanLine.title)
@@ -92,6 +94,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.updateDurationMenuItem.submenu?.items.forEach{ $0.state = .off}
             self.updateDurationMenuItem.submenu?.items[selectedIndex].state = .on
             }.disposed(by: bag)
+        
+        viewModel.setting.showTemperatureOnStatusBar.asObservable().bind { [unowned self] (show) in
+            self.showTemperatureOnStatusBarItem.state = show ? .on : .off
+        }.disposed(by: bag)
+        
+        Observable.combineLatest(
+            viewModel.statusBarTitle.asObservable(),
+            viewModel.setting.showTemperatureOnStatusBar.asObservable()
+            ).map { $0.1 ? $0.0 : "Corsair"}.bind {[unowned self] (title) in
+                self.statusItem.button?.title = title
+        }.disposed(by: bag)
         
     }
     
@@ -131,6 +144,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         viewModel.setting.didSelectUpdateDuration(duration)
+    }
+    @IBAction func didTapShowTemperatureOnStatusbar(_ sender: Any) {
+        viewModel.setting.didToggleShowTemperatureOnStatusBar()
     }
     
 }

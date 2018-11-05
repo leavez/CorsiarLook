@@ -18,6 +18,7 @@
                 <outlet property="nameLIne" destination="mUl-cZ-w6x" id="OV8-56-8T2"/>
                 <outlet property="pumpModeSelectionLine" destination="PXm-pp-IK7" id="eOg-1T-EMZ"/>
                 <outlet property="pumpSpeed" destination="P2r-1s-Qqp" id="ZYh-um-kS8"/>
+                <outlet property="showTemperatureOnStatusBarItem" destination="oJq-m0-JNX" id="16V-Xd-mfp"/>
                 <outlet property="tempertureLine" destination="5ca-JA-fny" id="xKJ-nu-Oag"/>
                 <outlet property="updateDurationMenuItem" destination="Se5-in-c3K" id="GKO-5j-S7p"/>
             </connections>
@@ -100,8 +101,11 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Update Duration" id="kGO-Mt-9Nq"/>
                             </menuItem>
-                            <menuItem title="Item" id="oJq-m0-JNX">
+                            <menuItem title="Show Temperature on Statusbar" id="oJq-m0-JNX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapShowTemperatureOnStatusbar:" target="Voe-Tx-rLC" id="2Dw-ae-1lo"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>

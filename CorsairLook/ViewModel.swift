@@ -98,6 +98,7 @@ class ViewModel {
     class Setting {
         let updateDuration = Variable(2.0)
         let automaticallyChangePumpMode = Variable(true)
+        let showTemperatureOnStatusBar = Variable(true)
         
         init() {
             // auto update
@@ -117,6 +118,10 @@ class ViewModel {
         
         func didSelectUpdateDuration(_ interval: TimeInterval) {
             updateDuration.value = interval
+        }
+        
+        func didToggleShowTemperatureOnStatusBar() {
+            showTemperatureOnStatusBar.value.toggle()
         }
     }
     
