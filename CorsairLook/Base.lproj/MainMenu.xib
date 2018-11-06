@@ -72,6 +72,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="LED mode" id="KIR-Kj-XA1">
                         <items>
+                            <menuItem title="off" id="FzL-c0-Wxv">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didTapLEDModeOff:" target="Voe-Tx-rLC" id="F4o-UV-uud"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="static white" id="58F-9X-LBi">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

@@ -129,6 +129,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         viewModel.didSelect(pumpMode: .performance)
     }
     
+    @IBAction func didTapLEDModeOff(_ sender: Any) {
+        DeviceService.shared.setLEDToStaticColor(hex: "000000")
+    }
     @IBAction func didTapLEDModeWhite(_ sender: Any) {
         DeviceService.shared.setLEDToStaticWhite()
     }
