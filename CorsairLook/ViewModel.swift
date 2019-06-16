@@ -109,6 +109,9 @@ class ViewModel {
                 } else {
                     return Observable<Int>.interval(d, scheduler: MainScheduler.asyncInstance)
                 }
+            }).filter({ _ in
+                // should fetch state when system sleeped
+                return !SystemSleepState.shared.isSleeped
             }).subscribe(onNext: { _ in
                 DeviceService.shared.fetchStatus()
             }).disposed(by: bag)
